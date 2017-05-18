@@ -1,6 +1,6 @@
 # ssss - Stupid Simple Seedbox Script
 
-This is currently a proof-of-concept for a barebone seedbox script. 
+This is currently a proof-of-concept for a barebone seedbox script.
 
 It is meant to be a very fast, lean and simple alternative to existing heavy seedbox scripts. 
 
@@ -28,3 +28,7 @@ First, download the script using wget and make it executable.
 Then, run it as root with all relevant variables.
 
 `sudo sh ssss.sh test.domain.com user password` would create a seedbox on the `test.domain.com` with the username `user` and password `password`.
+
+# Disclaimer
+
+I am not responsible for anything this script ends up doing, I tested it (to some extent) and it shouldn't do any harm, but please use it with caution.
