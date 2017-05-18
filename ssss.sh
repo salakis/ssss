@@ -81,7 +81,7 @@ cat > /var/torrent/index.html << EOL
     <br/></td>
   </tr>
   <tr>
-    <td><div align="center"><p>Powered by: Stupid Simple Seedbox Script</p></div></td>
+    <td><div align="center"><p>Powered by: <a href=https://github.com/salakis/ssss>Simple Stupid Seedbox Script</a></p></div></td>
   </tr>
 </table>
 <br/>
