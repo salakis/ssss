@@ -13,6 +13,8 @@ It requires systemd and has been tested on Ubuntu 16.04 LTS on following archite
 
 `amd64 armv7/armhf arm64`
 
+Additonally, it's currently only working properly if caddy can bind on port 443 and the port is externally reachable.
+
 # Usage
 
 The script is to be used with 3 options, $1 for an existing domain name pointing to the server, $2 for the username and $3 for the password used for accessing Transmission and the file list.
