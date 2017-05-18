@@ -1,4 +1,4 @@
-# ssss - Simple Stupid Seedbox Script
+# ssss - Stupid Simple Seedbox Script
 
 This is currently a proof-of-concept for a barebone seedbox script. 
 
@@ -18,4 +18,5 @@ It requires systemd and has been tested on Ubuntu 16.04 LTS on following archite
 The script is to be used with 3 options, $1 for an existing domain name pointing to the server, $2 for the username and $3 for the password used for accessing Transmission and the file list.
 
 ## Example
-`./ssss.sh test.domain.com user password`
+
+`sudo sh ssss.sh test.domain.com user password` would create a seedbox on the `test.domain.com` with the username `user` and password `password`.
