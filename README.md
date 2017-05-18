@@ -19,4 +19,10 @@ The script is to be used with 3 options, $1 for an existing domain name pointing
 
 ## Example
 
+First, download the script using wget and make it executable.
+
+`wget https://raw.githubusercontent.com/salakis/ssss/master/ssss.sh && chmod +x ssss.sh`
+
+Then, run it as root with all relevant variables.
+
 `sudo sh ssss.sh test.domain.com user password` would create a seedbox on the `test.domain.com` with the username `user` and password `password`.
