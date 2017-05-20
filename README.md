@@ -6,7 +6,7 @@ It is meant to be a very fast, lean and simple alternative to existing heavy see
 
 On comparably modern systems, the script delivers a working seedbox setup in less than 20 seconds.
 
-It installs `transmission-daemon` from the default Ubuntu repository and `caddy` with enabled TLS using Let's Encrypt as reverse proxy for the Transmission web UI and serving the downloaded files.  
+It installs `transmission-daemon` from the default Ubuntu repository and `caddy` with enabled TLS using Let's Encrypt as reverse proxy for the Transmission web UI and serving the downloaded files. Therefore, the web interface and files are served by default using HTTP/2 and a valid HTTPS certificate.
 
 
 It requires systemd and has been tested on Ubuntu 16.04 LTS on following architectures:
