@@ -4,7 +4,7 @@ mkdir /var/torrent
 mkdir /var/torrent/downloads
 apt-get update
 apt-get install -y transmission-daemon
-wget -qO- https://getcaddy.com | bash
+wget -qO- https://getcaddy.com | bash -s personal
 cat > /etc/caddy/Caddyfile << EOL
 https://$1
 root /var/torrent/
