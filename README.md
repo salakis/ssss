@@ -6,14 +6,14 @@ It is meant to be a very fast, lean and simple alternative to existing heavy see
 
 On comparably modern systems, the script delivers a working seedbox setup in less than 20 seconds.
 
-It installs `transmission-daemon` from the default Ubuntu repository and `caddy` with enabled TLS using Let's Encrypt as reverse proxy for the Transmission web UI and serving the downloaded files. Therefore, the web interface and files are served by default using HTTP/2 and a valid HTTPS certificate.
+It installs `transmission-daemon` from the default Debian or Ubuntu repository and `caddy` with enabled TLS using Let's Encrypt as reverse proxy for the Transmission web UI and serving the downloaded files. Therefore, the web interface and files are served by default using HTTP/2 and a valid HTTPS certificate.
 
 
-It requires systemd and has been tested on Ubuntu 16.04 LTS on following architectures:
+It requires systemd and has been tested on Debian 8, Debian 9 and Ubuntu 16.04 LTS on following architectures:
 
 `amd64 armv7/armhf arm64`
 
-Additonally, it's currently only working properly if caddy can bind on port 443 and the port is externally reachable.
+Additonally, it's currently only working properly if caddy can bind on ports 80 and 443 (both ports have to be externally reachable).
 
 # Usage
 
