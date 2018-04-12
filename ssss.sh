@@ -46,16 +46,15 @@ cat > /var/torrent/index.html << EOL
   <meta charset="utf-8">
 
   <title>Seedbox</title>
-<link href="https://fonts.googleapis.com/css?family=Roboto:300,900" rel="stylesheet">
 </head>
 <style>
 	h1 {
-		font-family: 'Roboto', sans-serif;
+		font-family: sans-serif;
 		font-weight: 900
 	}
 	
 	p {
-		font-family: 'Roboto', sans-serif;
+		font-family: sans-serif;
 		font-weight: 300
 	}
 	</style>
