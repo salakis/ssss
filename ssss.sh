@@ -30,7 +30,7 @@ chmod 0770 /etc/ssl/caddy
 chown www-data:www-data /etc/ssl/caddy
 chown www-data:www-data /etc/caddy/Caddyfile
 chmod 444 /etc/caddy/Caddyfile
-wget -O /etc/systemd/system/caddy.service "https://github.com/mholt/caddy/raw/master/dist/init/linux-systemd/caddy.service"
+wget -O /etc/systemd/system/caddy.service "https://raw.githubusercontent.com/caddyserver/caddy/v1/dist/init/linux-systemd/caddy.service"
 chown root:root /etc/systemd/system/caddy.service
 chmod 644 /etc/systemd/system/caddy.service
 systemctl daemon-reload
