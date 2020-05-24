@@ -1,42 +1,26 @@
 #!/bin/bash
-mkdir /etc/caddy
+echo "deb [trusted=yes] https://apt.fury.io/caddy/ /" \
+    | tee -a /etc/apt/sources.list.d/caddy-fury.list
 mkdir /var/torrent
 mkdir /var/torrent/downloads
-apt-get update
-apt-get install -y transmission-daemon
-wget -qO- https://getcaddy.com | bash -s personal
+apt update
+apt install -y caddy transmission-daemon
+systemctl stop caddy
+systemctl stop transmission-daemon
+rm /etc/caddy/Caddyfile
+PW=`caddy hash-password --plaintext $3`
 cat > /etc/caddy/Caddyfile << EOL
 https://$1
-root /var/torrent/
-browse
-proxy /transmission localhost:9091 {
-        transparent
-}
-basicauth /downloads $2 $3
+root * /var/torrent/
+file_server {
+	browse
+	}
+reverse_proxy /transmission/* localhost:9091
+basicauth /downloads/* {
+	$2 $PW
+	}
 EOL
-chown root:root /usr/local/bin/caddy
-chmod 755 /usr/local/bin/caddy
-setcap 'cap_net_bind_service=+ep' /usr/local/bin/caddy
-groupadd -g 33 www-data
-useradd \
-  -g www-data --no-user-group \
-  --home-dir /var/www --no-create-home \
-  --shell /usr/sbin/nologin \
-  --system --uid 33 www-data
-chown -R root:www-data /etc/caddy
-mkdir /etc/ssl/caddy
-chown -R www-data:root /etc/ssl/caddy
-chmod 0770 /etc/ssl/caddy
-chown www-data:www-data /etc/ssl/caddy
-chown www-data:www-data /etc/caddy/Caddyfile
 chmod 444 /etc/caddy/Caddyfile
-wget -O /etc/systemd/system/caddy.service "https://raw.githubusercontent.com/caddyserver/caddy/v1/dist/init/linux-systemd/caddy.service"
-chown root:root /etc/systemd/system/caddy.service
-chmod 644 /etc/systemd/system/caddy.service
-systemctl daemon-reload
-systemctl start caddy.service
-systemctl enable caddy.service
-service transmission-daemon stop
 wget -O /var/torrent/torrent.svg https://upload.wikimedia.org/wikipedia/commons/4/46/Transmission_Icon.svg
 wget -O /var/torrent/folder.svg https://upload.wikimedia.org/wikipedia/commons/8/8f/Gnome-folder-open.svg
 cat > /var/torrent/index.html << EOL
@@ -44,7 +28,6 @@ cat > /var/torrent/index.html << EOL
 <html lang="en">
 <head>
   <meta charset="utf-8">
-
   <title>Seedbox</title>
 </head>
 <style>
@@ -58,24 +41,21 @@ cat > /var/torrent/index.html << EOL
 		font-weight: 300
 	}
 	</style>
-
 <body>
 <table width="700" border="0" align="center">
   <tr>
     <td><div align="center"><h1>Welcome to your seedbox</h1></div></td>
   </tr>
   <tr>
-
     <td><table width="100%" border="0" cellpadding="10">
       <tr>
-        <td><a href="/transmission" target="_top"><img src="torrent.svg" alt="Go to Transmission web UI" width="300" height="300" border="0"/></a></td>
-        <td><a href="/downloads" target="_top"><img src="folder.svg" alt="Go to file list" width="300" height="300" border="0"/></a></td>
+        <td><a href="/transmission/web/" target="_top"><img src="torrent.svg" alt="Go to Transmission web UI" width="300" height="300" border="0"/></a></td>
+        <td><a href="/downloads/" target="_top"><img src="folder.svg" alt="Go to file list" width="300" height="300" border="0"/></a></td>
       </tr>
     </table></td>
   </tr>
   <tr>
     <td><br/>
-
     <br/>
     <br/></td>
   </tr>
@@ -163,5 +143,5 @@ cat > /etc/transmission-daemon/settings.json << EOL
     "utp-enabled": true
 }
 EOL
-service transmission-daemon start
-service caddy restart
+systemctl start transmission-daemon
+systemctl start caddy
