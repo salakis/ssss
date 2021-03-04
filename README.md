@@ -4,14 +4,13 @@ This is currently a proof-of-concept for a barebone seedbox script.
 
 It is meant to be a very fast, lean and simple alternative to existing heavy seedbox scripts. 
 
-On comparably modern systems, the script delivers a working seedbox setup in less than 20 seconds.
+On comparably modern systems, the script delivers a working seedbox setup in about 30 seconds.
 
-It installs `transmission-daemon` from the default Debian or Ubuntu repository and `caddy` with enabled TLS using Let's Encrypt as reverse proxy for the Transmission web UI and serving the downloaded files. Therefore, the web interface and files are served by default using HTTP/2 and a valid HTTPS certificate.
+It installs `transmission-daemon` from the default repository and `caddy` with enabled auto-updated TLS (Let's Encrypt) acting as reverse proxy for the Transmission web UI as well as a HTTPS file server for the downloaded files.
 
+This script relies on the official Caddy .deb repository on cloudsmith.io, which is currently providing Caddy packages for the following architectures:
 
-It requires systemd and has been tested on Debian 8, Debian 9 and Ubuntu 16.04 LTS on following architectures:
-
-`amd64 armv7/armhf arm64`
+`amd64 arm64 armel armel armhf ppc64el s390x`
 
 Additonally, it's currently only working properly if caddy can bind on ports 80 and 443 (both ports have to be externally reachable).
 
