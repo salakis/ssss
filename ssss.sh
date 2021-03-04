@@ -1,6 +1,8 @@
 #!/bin/bash
-echo "deb [trusted=yes] https://apt.fury.io/caddy/ /" \
-    | tee -a /etc/apt/sources.list.d/caddy-fury.list
+apt update
+apt install -y wget debian-keyring debian-archive-keyring apt-transport-https
+wget -qO - https://dl.cloudsmith.io/public/caddy/stable/gpg.key | apt-key add -
+wget -qO - https://dl.cloudsmith.io/public/caddy/stable/debian.deb.txt | tee -a /etc/apt/sources.list.d/caddy-stable.list
 mkdir /var/torrent
 mkdir /var/torrent/downloads
 apt update
